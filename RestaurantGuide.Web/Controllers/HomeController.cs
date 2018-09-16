@@ -25,7 +25,7 @@ namespace RestaurantGuide.Web.Controllers
             model.Description = "A mighty developer from middle earth";
             model.Location = "Dildoland, The Shire";
 
-            return View();
+            return View(model);
         }
 
         public ActionResult Contact()
