@@ -8,13 +8,7 @@
 
 @foreach (var review in Model)
 {
-    <section class="panel panel-default">
-        <h4 class="panel-title">@review.Name</h4>
-        <div class="panel-body">
-            <div class="text-primary">Rating: @review.Rating</div>
-            <div>Location: @review.City, @review.Country</div>
-        </div>
-    </section>
+    @Html.Partial("_Review", review)
 }
 
 <p>
