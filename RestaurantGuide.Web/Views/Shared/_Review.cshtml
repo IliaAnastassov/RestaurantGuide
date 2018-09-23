@@ -1,0 +1,14 @@
+﻿@model RestaurantGuide.Web.Models.RestaurantReview
+
+<section class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">@Model.Name</h4>
+    </div>
+    <div class="panel-body">
+        <div class="text-primary">Rating: @Model.Rating</div>
+        <div>Location: @Model.City, @Model.Country</div>
+    </div>
+    <div class="panel-footer">
+        <span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</span>
+    </div>
+</section>
