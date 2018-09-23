@@ -45,7 +45,7 @@ namespace RestaurantGuide.Web.Controllers
             },
             new RestaurantReview
             {
-                Id = 3,
+                Id = 5,
                 Name = "Gute Schteltze",
                 City = "Berlin",
                 Country = "Germany",
@@ -92,23 +92,22 @@ namespace RestaurantGuide.Web.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = _reviews.SingleOrDefault(r => r.Id == id);
+
+            return View(model);
         }
 
         // POST: Reviews/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            var model = _reviews.SingleOrDefault(r => r.Id == id);
+            if (TryUpdateModel(model))
             {
-                // TODO: Add update logic here
+                return RedirectToAction(nameof(Index));
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         // GET: Reviews/Delete/5
@@ -131,6 +130,15 @@ namespace RestaurantGuide.Web.Controllers
             {
                 return View();
             }
+        }
+
+        [ChildActionOnly]
+        public ActionResult BestReview()
+        {
+            var model = _reviews.OrderByDescending(r => r.Rating)
+                                .FirstOrDefault();
+
+            return PartialView("_BestReview", model);
         }
     }
 }

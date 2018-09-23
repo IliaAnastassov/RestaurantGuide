@@ -33,6 +33,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+        <div class="h5">
+            @Html.Action("BestReview", "Reviews")
+        </div>
         <footer>
             @RenderSection("footer", required: false)
             <p>&copy; @DateTime.Now.Year - Restaurant Guide</p>
