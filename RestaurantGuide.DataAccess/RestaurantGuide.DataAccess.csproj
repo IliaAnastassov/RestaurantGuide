@@ -48,6 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201809251818571_Initial_Migration.cs" />
+    <Compile Include="Migrations\201809251818571_Initial_Migration.Designer.cs">
+      <DependentUpon>201809251818571_Initial_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />
@@ -63,6 +68,11 @@
       <Project>{25860CE2-4EED-4893-8FB4-F0C566435234}</Project>
       <Name>RestaurantGuide.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809251818571_Initial_Migration.resx">
+      <DependentUpon>201809251818571_Initial_Migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
