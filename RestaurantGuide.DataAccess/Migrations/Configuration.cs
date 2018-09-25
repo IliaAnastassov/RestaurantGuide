@@ -9,7 +9,7 @@ namespace RestaurantGuide.DataAccess.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(RestaurantGuideDb context)
@@ -25,8 +25,8 @@ namespace RestaurantGuide.DataAccess.Migrations
                     Country = "Italy",
                     Reviews = new List<RestaurantReview>
                     {
-                        new RestaurantReview { Rating = 9, Body = "Genuine Italian food - a must visit for all italian food lovers." },
-                        new RestaurantReview { Rating = 10, Body = "Food, wine and service are impecable!" }
+                        new RestaurantReview { Rating = 9, Body = "Genuine Italian food - a must visit for all italian food lovers.", ReviewerName = "Jimmy" },
+                        new RestaurantReview { Rating = 10, Body = "Food, wine and service are impecable!", ReviewerName = "Melissa" }
                     }
                 },
                 new Restaurant
@@ -36,7 +36,7 @@ namespace RestaurantGuide.DataAccess.Migrations
                     Country = "Germany",
                     Reviews = new List<RestaurantReview>
                     {
-                        new RestaurantReview { Rating = 8, Body = "Very nice place!" }
+                        new RestaurantReview { Rating = 8, Body = "Very nice place!", ReviewerName = "Jannet" }
                     }
                 });
         }
