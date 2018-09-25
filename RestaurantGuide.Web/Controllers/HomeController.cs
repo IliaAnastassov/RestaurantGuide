@@ -1,21 +1,24 @@
 ﻿using System.Web.Mvc;
+using RestaurantGuide.DataAccess.Repositories;
+using RestaurantGuide.Entities;
 using RestaurantGuide.Web.Models;
 
 namespace RestaurantGuide.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IRepository<Restaurant> _repository;
+
+        public HomeController(IRepository<Restaurant> repository)
+        {
+            _repository = repository;
+        }
+
         public ActionResult Index()
         {
-            var controller = RouteData.Values["controller"];
-            var action = RouteData.Values["action"];
-            var id = RouteData.Values["id"];
+            var model = _repository.GetAll();
 
-            var message = $"{controller}::{action}/{id}";
-
-            ViewBag.Message = message;
-
-            return View();
+            return View(model);
         }
 
         public ActionResult About()

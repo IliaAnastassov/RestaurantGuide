@@ -12,11 +12,13 @@ namespace RestaurantGuide.Web.Controllers
 {
     public class ReviewsController : Controller
     {
-        private IRepository<RestaurantReview> _repository;
+        private IRepository<Restaurant> _restaurantRepository;
+        private IRepository<RestaurantReview> _reviewRepository;
 
-        public ReviewsController(IRepository<RestaurantReview> repository)
+        public ReviewsController(IRepository<Restaurant> restaurantRepository, IRepository<RestaurantReview> reviewRepository)
         {
-            _repository = repository;
+            _restaurantRepository = restaurantRepository;
+            _reviewRepository = reviewRepository;
         }
 
         // GET: Reviews
@@ -99,12 +101,16 @@ namespace RestaurantGuide.Web.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult BestReview()
+        public ActionResult BestRestaurant()
         {
-            //var model = _repository.OrderByDescending(r => r.Rating)
-            //                    .FirstOrDefault();
+            var bestRestaurantId = _reviewRepository.GetAll()
+                                                    .OrderByDescending(r => r.Rating)
+                                                    .FirstOrDefault()
+                                                    .Id;
 
-            return PartialView("_BestReview", null);
+            var bestRestaurant = _restaurantRepository.Get(bestRestaurantId);
+
+            return PartialView("_BestRestaurant", bestRestaurant);
         }
     }
 }
