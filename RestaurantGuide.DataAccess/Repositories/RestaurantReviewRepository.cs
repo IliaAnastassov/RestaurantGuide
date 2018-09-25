@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.DataAccess.Repositories
 {
-    public interface IRepository<T>
-        where T : new()
+    public class RestaurantReviewRepository : IRepository<RestaurantReview>
     {
     }
 }
