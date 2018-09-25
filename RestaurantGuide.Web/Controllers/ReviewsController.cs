@@ -12,74 +12,6 @@ namespace RestaurantGuide.Web.Controllers
 {
     public class ReviewsController : Controller
     {
-        private static List<RestaurantReview> _reviews = new List<RestaurantReview>
-        {
-            new RestaurantReview
-            {
-                Id = 1,
-                Rating = 9
-            },
-            new RestaurantReview
-            {
-                Id = 2,
-                Rating = 8
-            },
-            new RestaurantReview
-            {
-                Id = 3,
-                Rating = 10
-            },
-            new RestaurantReview
-            {
-                Id = 4,
-                Rating = 9
-            },
-            new RestaurantReview
-            {
-                Id = 5,
-
-                Rating = 7
-            }
-        };
-        private static List<Restaurant> _restaurants = new List<Restaurant>
-        {
-            new Restaurant
-            {
-                Id = 1,
-                Name = "Joe's Pizza Place",
-                City = "New York",
-                Country = "USA"
-            },
-            new Restaurant
-            {
-                Id = 2,
-                Name = "City Wok",
-                City = "London",
-                Country = "UK"
-            },
-            new Restaurant
-            {
-                Id = 3,
-                Name = "La Belle Vue",
-                City = "Paris",
-                Country = "France"
-            },
-            new Restaurant
-            {
-                Id = 4,
-                Name = "Spaggo",
-                City = "Rome",
-                Country = "Italy"
-            },
-            new Restaurant
-            {
-                Id = 5,
-                Name = "Gute Schteltze",
-                City = "Berlin",
-                Country = "Germany"
-            },
-        };
-
         private IRepository<RestaurantReview> _repository;
 
         public ReviewsController(IRepository<RestaurantReview> repository)
@@ -90,9 +22,9 @@ namespace RestaurantGuide.Web.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            var model = _reviews.OrderBy(r => r.Rating);
+            //var model = _repository.OrderBy(r => r.Rating);
 
-            return View(model);
+            return View();
         }
 
         // GET: Reviews/Details/5
@@ -126,22 +58,22 @@ namespace RestaurantGuide.Web.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _reviews.SingleOrDefault(r => r.Id == id);
+            //var model = _repository.SingleOrDefault(r => r.Id == id);
 
-            return View(model);
+            return View();
         }
 
         // POST: Reviews/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var model = _reviews.SingleOrDefault(r => r.Id == id);
-            if (TryUpdateModel(model))
-            {
-                return RedirectToAction(nameof(Index));
-            }
+            //var model = _repository.SingleOrDefault(r => r.Id == id);
+            //if (TryUpdateModel(model))
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
 
-            return View(model);
+            return View();
         }
 
         // GET: Reviews/Delete/5
@@ -169,10 +101,10 @@ namespace RestaurantGuide.Web.Controllers
         [ChildActionOnly]
         public ActionResult BestReview()
         {
-            var model = _reviews.OrderByDescending(r => r.Rating)
-                                .FirstOrDefault();
+            //var model = _repository.OrderByDescending(r => r.Rating)
+            //                    .FirstOrDefault();
 
-            return PartialView("_BestReview", model);
+            return PartialView("_BestReview", null);
         }
     }
 }
