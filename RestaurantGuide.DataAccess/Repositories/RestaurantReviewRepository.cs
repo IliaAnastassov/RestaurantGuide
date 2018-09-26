@@ -5,7 +5,7 @@ using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.DataAccess.Repositories
 {
-    public class RestaurantReviewRepository : IRepository<RestaurantReview>
+    public class RestaurantReviewRepository : IRestaurantReviewRepository, IRepository<RestaurantReview>
     {
         public RestaurantReview Get(int id)
         {
