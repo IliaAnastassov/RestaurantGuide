@@ -54,7 +54,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRestaurantRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRestaurantReviewRepository.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />
     <Compile Include="Repositories\RestaurantReviewRepository.cs" />
     <Compile Include="RestaurantGuideDb.cs" />

@@ -7,15 +7,16 @@ using RestaurantGuide.Web.Models;
 using RestaurantGuide.Entities;
 using RestaurantGuide.DataAccess.Repositories;
 using System.Configuration;
+using RestaurantGuide.DataAccess.Repositories.Interfaces;
 
 namespace RestaurantGuide.Web.Controllers
 {
     public class ReviewsController : Controller
     {
-        private IRepository<Restaurant> _restaurantRepository;
-        private IRepository<RestaurantReview> _reviewRepository;
+        private IRestaurantRepository _restaurantRepository;
+        private IRestaurantReviewRepository _reviewRepository;
 
-        public ReviewsController(IRepository<Restaurant> restaurantRepository, IRepository<RestaurantReview> reviewRepository)
+        public ReviewsController(IRestaurantRepository restaurantRepository, IRestaurantReviewRepository reviewRepository)
         {
             _restaurantRepository = restaurantRepository;
             _reviewRepository = reviewRepository;

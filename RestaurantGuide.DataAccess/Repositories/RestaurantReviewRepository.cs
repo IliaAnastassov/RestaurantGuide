@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RestaurantGuide.DataAccess.Repositories.Interfaces;
 using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.DataAccess.Repositories

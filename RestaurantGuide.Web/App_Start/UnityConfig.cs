@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using RestaurantGuide.DataAccess.Repositories;
+using RestaurantGuide.DataAccess.Repositories.Interfaces;
 using RestaurantGuide.Entities;
 using Unity;
 using Unity.Injection;
@@ -45,8 +46,8 @@ namespace RestaurantGuide.Web
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            container.RegisterType<IRepository<Restaurant>, RestaurantRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<IRepository<RestaurantReview>, RestaurantReviewRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IRestaurantRepository, RestaurantRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IRestaurantReviewRepository, RestaurantReviewRepository>(new HierarchicalLifetimeManager());
         }
     }
 }

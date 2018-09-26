@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using RestaurantGuide.DataAccess.Repositories;
+using RestaurantGuide.DataAccess.Repositories.Interfaces;
 using RestaurantGuide.Entities;
 using RestaurantGuide.Web.Models;
 
@@ -7,9 +8,9 @@ namespace RestaurantGuide.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Restaurant> _repository;
+        private IRestaurantRepository _repository;
 
-        public HomeController(IRepository<Restaurant> repository)
+        public HomeController(IRestaurantRepository repository)
         {
             _repository = repository;
         }
