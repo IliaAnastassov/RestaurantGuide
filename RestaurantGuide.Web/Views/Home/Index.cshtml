@@ -8,16 +8,13 @@
 
 @foreach (var restaurant in Model)
 {
-    <section class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">@restaurant.Name</h4>
-        </div>
-        <div class="panel-body">
-            <div class="text-primary">Rating: TODO</div>
-            <div>Location: @restaurant.City, @restaurant.Country</div>
-        </div>
-        <div class="panel-footer">
-            <span>@Html.ActionLink("Edit", "Edit", new { id = restaurant.Id })</span>
-        </div>
-    </section>
+    <h4 class="panel-title">@restaurant.Name</h4>
+    <div>
+        <div>Rating: TODO</div>
+        <div>Location: @restaurant.City, @restaurant.Country</div>
+    </div>
+    <div>
+        <span>@Html.ActionLink("Edit", "Edit", new { id = restaurant.Id })</span>
+    </div>
+    <hr />
 }

@@ -17,9 +17,10 @@ namespace RestaurantGuide.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = _repository.GetAll();
+            var topRestaurants = _repository.GetTopTenRestaurants();
 
-            return View(model);
+
+            return View(topRestaurants);
         }
 
         public ActionResult About()
