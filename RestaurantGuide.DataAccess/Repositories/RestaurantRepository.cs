@@ -29,5 +29,18 @@ namespace RestaurantGuide.DataAccess.Repositories
                 return restaurants;
             }
         }
+
+        public IEnumerable<Restaurant> GetTopTenRestaurants()
+        {
+            using (var context = new RestaurantGuideDb())
+            {
+                var restaurants = context.Restaurants
+                                         .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                                         .Take(10)
+                                         .ToList();
+
+                return restaurants;
+            }
+        }
     }
 }
