@@ -100,18 +100,5 @@ namespace RestaurantGuide.Web.Controllers
                 return View();
             }
         }
-
-        [ChildActionOnly]
-        public ActionResult BestRestaurant()
-        {
-            var bestRestaurantId = _reviewRepository.GetAll()
-                                                    .OrderByDescending(r => r.Rating)
-                                                    .FirstOrDefault()
-                                                    .Id;
-
-            var bestRestaurant = _restaurantRepository.Get(bestRestaurantId);
-
-            return PartialView("_BestRestaurant", bestRestaurant);
-        }
     }
 }

@@ -1,24 +1,24 @@
-﻿using System.Web.Mvc;
-using RestaurantGuide.DataAccess.Repositories;
+﻿using System.Linq;
+using System.Web.Mvc;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
-using RestaurantGuide.Entities;
 using RestaurantGuide.Web.Models;
 
 namespace RestaurantGuide.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IRestaurantRepository _repository;
+        private IRestaurantRepository _restaurantRepository;
+        private IRestaurantReviewRepository _reviewRepository;
 
-        public HomeController(IRestaurantRepository repository)
+        public HomeController(IRestaurantRepository repository, IRestaurantReviewRepository reviewRepository)
         {
-            _repository = repository;
+            _restaurantRepository = repository;
+            _reviewRepository = reviewRepository;
         }
 
         public ActionResult Index()
         {
-            var topRestaurants = _repository.GetTopTenRestaurants();
-
+            var topRestaurants = _restaurantRepository.GetTopTenRestaurants();
 
             return View(topRestaurants);
         }
@@ -38,6 +38,19 @@ namespace RestaurantGuide.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult BestRestaurant()
+        {
+            var bestRestaurantId = _reviewRepository.GetAll()
+                                                    .OrderByDescending(r => r.Rating)
+                                                    .FirstOrDefault()
+                                                    .Id;
+
+            var bestRestaurant = _restaurantRepository.Get(bestRestaurantId);
+
+            return PartialView("_BestRestaurant", bestRestaurant);
         }
     }
 }
