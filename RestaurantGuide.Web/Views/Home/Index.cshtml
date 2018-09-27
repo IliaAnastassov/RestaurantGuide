@@ -8,14 +8,5 @@
 
 @foreach (var restaurant in Model)
 {
-    <h4>@restaurant.Name</h4>
-    <div>
-        <div>Location: @restaurant.City, @restaurant.Country</div>
-        <div>Rating: @restaurant.Rating</div>
-        <div>Reviews: @restaurant.CountOfReviews</div>
-    </div>
-    <div>
-        <span>@Html.ActionLink("Edit", "Edit", new { id = restaurant.Id })</span>
-    </div>
-    <hr />
+    @Html.Partial("_Restaurant", restaurant)
 }

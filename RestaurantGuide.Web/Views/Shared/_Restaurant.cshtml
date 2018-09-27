@@ -1,0 +1,12 @@
+﻿@model RestaurantGuide.Web.Models.RestaurantListViewModel
+
+<h4>@Model.Name</h4>
+<div>
+    <div>Location: @Model.City, @Model.Country</div>
+    <div>Rating: @Model.Rating</div>
+    <div>Reviews: @Model.CountOfReviews</div>
+</div>
+<div>
+    <span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</span>
+</div>
+<hr />
