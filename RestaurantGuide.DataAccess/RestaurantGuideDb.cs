@@ -4,7 +4,7 @@ using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.DataAccess
 {
-    class RestaurantGuideDb : DbContext
+    internal class RestaurantGuideDb : DbContext
     {
         public RestaurantGuideDb() : base("DefaultConnection")
         {
