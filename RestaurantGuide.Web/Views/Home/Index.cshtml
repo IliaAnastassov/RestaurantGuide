@@ -6,6 +6,11 @@
 
 <h2>Restaurants</h2>
 
+<form method="get">
+    <input type="text" name="filter" />
+    <input type="submit" value="Search" />
+</form>
+
 @foreach (var restaurant in Model)
 {
     @Html.Partial("_Restaurant", restaurant)

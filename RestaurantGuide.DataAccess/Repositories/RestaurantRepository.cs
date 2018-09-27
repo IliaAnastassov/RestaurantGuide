@@ -31,7 +31,7 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Restaurant> GetRestaurantsOrderedByRating()
+        public IEnumerable<Restaurant> GetRestaurantsOrderedByRating(string filter)
         {
             using (var context = new RestaurantGuideDb())
             {
@@ -39,6 +39,7 @@ namespace RestaurantGuide.DataAccess.Repositories
                                          .AsNoTracking()
                                          .Include(r => r.Reviews)
                                          .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                                         .Where(r => string.IsNullOrEmpty(filter) || r.Name.ToLower().Contains(filter.ToLower()))
                                          .ToList();
 
                 return restaurants;
