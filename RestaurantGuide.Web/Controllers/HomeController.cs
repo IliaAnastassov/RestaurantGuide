@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
+using RestaurantGuide.Entities;
 using RestaurantGuide.Web.Models;
 
 namespace RestaurantGuide.Web.Controllers
@@ -18,14 +19,14 @@ namespace RestaurantGuide.Web.Controllers
         {
             var restaurants = _restaurantRepository.GetRestaurantsOrderedByRating()
                                                    .Select(r => new RestaurantListViewModel
-                                                    {
-                                                        Id = r.Id,
-                                                        Name = r.Name,
-                                                        City = r.City,
-                                                        Country = r.Country,
-                                                        CountOfReviews = r.Reviews.Count(),
-                                                        Rating = r.Reviews.Any() ? (double?)r.Reviews.Average(review => review.Rating) : null
-                                                    }).ToList();
+                                                   {
+                                                       Id = r.Id,
+                                                       Name = r.Name,
+                                                       City = r.City,
+                                                       Country = r.Country,
+                                                       CountOfReviews = r.Reviews.Count(),
+                                                       Rating = GetRating(r)
+                                                   }).ToList();
 
             return View(restaurants);
         }
@@ -48,6 +49,18 @@ namespace RestaurantGuide.Web.Controllers
             var bestRestaurant = _restaurantRepository.GetBestRestaurant();
 
             return PartialView("_BestRestaurant", bestRestaurant);
+        }
+
+        private double? GetRating(Restaurant restaurant)
+        {
+            double? rating = null;
+
+            if (restaurant.Reviews.Any())
+            {
+                rating = restaurant.Reviews.Average(r => r.Rating);
+            }
+
+            return rating;
         }
     }
 }
