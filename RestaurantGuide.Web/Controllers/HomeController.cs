@@ -26,7 +26,8 @@ namespace RestaurantGuide.Web.Controllers
                                                        Country = r.Country,
                                                        CountOfReviews = r.Reviews.Count(),
                                                        Rating = GetRating(r)
-                                                   }).ToList();
+                                                   })
+                                                   .ToList();
 
             return View(restaurants);
         }
