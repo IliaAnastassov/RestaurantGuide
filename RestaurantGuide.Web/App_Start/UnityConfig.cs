@@ -46,8 +46,8 @@ namespace RestaurantGuide.Web
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            container.RegisterType<IRestaurantRepository, RestaurantRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<IRestaurantReviewRepository, RestaurantReviewRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IRestaurantRepository, InMemoryRestaurantRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IRestaurantReviewRepository, InMemoryRestaurantReviewRepository>(new HierarchicalLifetimeManager());
         }
     }
 }
