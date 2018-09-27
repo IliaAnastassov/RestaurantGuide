@@ -8,29 +8,31 @@ namespace RestaurantGuide.Web.Controllers
     public class HomeController : Controller
     {
         private IRestaurantRepository _restaurantRepository;
-        private IRestaurantReviewRepository _reviewRepository;
 
-        public HomeController(IRestaurantRepository repository, IRestaurantReviewRepository reviewRepository)
+        public HomeController(IRestaurantRepository repository)
         {
             _restaurantRepository = repository;
-            _reviewRepository = reviewRepository;
         }
 
         public ActionResult Index()
         {
-            var topRestaurants = _restaurantRepository.GetTopTenRestaurants();
+            var restaurants = _restaurantRepository.GetRestaurantsOrderedByRating()
+                                                   .Select(r => new RestaurantListViewModel
+                                                    {
+                                                        Id = r.Id,
+                                                        Name = r.Name,
+                                                        City = r.City,
+                                                        Country = r.Country,
+                                                        CountOfReviews = r.Reviews.Count(),
+                                                        Rating = r.Reviews.Any() ? (double?)r.Reviews.Average(review => review.Rating) : null
+                                                    }).ToList();
 
-            return View(topRestaurants);
+            return View(restaurants);
         }
 
         public ActionResult About()
         {
-            var model = new AboutModel();
-            model.Name = "Dildo Schwaggins";
-            model.Description = "A mighty developer from middle earth";
-            model.Location = "Dildoland, The Shire";
-
-            return View(model);
+            return View();
         }
 
         public ActionResult Contact()
@@ -43,12 +45,7 @@ namespace RestaurantGuide.Web.Controllers
         [ChildActionOnly]
         public ActionResult BestRestaurant()
         {
-            var bestRestaurantId = _reviewRepository.GetAll()
-                                                    .OrderByDescending(r => r.Rating)
-                                                    .FirstOrDefault()
-                                                    .Id;
-
-            var bestRestaurant = _restaurantRepository.Get(bestRestaurantId);
+            var bestRestaurant = _restaurantRepository.GetBestRestaurant();
 
             return PartialView("_BestRestaurant", bestRestaurant);
         }

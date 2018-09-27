@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RestaurantGuide.Entities.Restaurant>
+﻿@model IEnumerable<RestaurantGuide.Web.Models.RestaurantListViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -8,11 +8,11 @@
 
 @foreach (var restaurant in Model)
 {
-    <h4 class="panel-title">@restaurant.Name</h4>
+    <h4>@restaurant.Name</h4>
     <div>
         <div>Location: @restaurant.City, @restaurant.Country</div>
-        <div>Rating: TODO</div>
-        <div>Reviews: TODO</div>
+        <div>Rating: @restaurant.Rating</div>
+        <div>Reviews: @restaurant.CountOfReviews</div>
     </div>
     <div>
         <span>@Html.ActionLink("Edit", "Edit", new { id = restaurant.Id })</span>
