@@ -9,6 +9,7 @@ namespace RestaurantGuide.DataAccess.Repositories.Interfaces
 {
     public interface IRestaurantRepository : IRepository<Restaurant>
     {
-        IEnumerable<Restaurant> GetTopTenRestaurants();
+        IEnumerable<Restaurant> GetRestaurantsOrderedByRating();
+        Restaurant GetBestRestaurant();
     }
 }

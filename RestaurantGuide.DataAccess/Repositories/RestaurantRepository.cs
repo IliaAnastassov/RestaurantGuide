@@ -23,6 +23,7 @@ namespace RestaurantGuide.DataAccess.Repositories
             {
                 var restaurants = context.Restaurants
                                          .AsNoTracking()
+                                         .Include(r => r.Reviews)
                                          .OrderBy(r => r.Name)
                                          .ToList();
 
@@ -30,16 +31,29 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Restaurant> GetTopTenRestaurants()
+        public IEnumerable<Restaurant> GetRestaurantsOrderedByRating()
         {
             using (var context = new RestaurantGuideDb())
             {
                 var restaurants = context.Restaurants
+                                         .AsNoTracking()
+                                         .Include(r => r.Reviews)
                                          .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
-                                         .Take(10)
                                          .ToList();
 
                 return restaurants;
+            }
+        }
+
+        public Restaurant GetBestRestaurant()
+        {
+            using (var context = new RestaurantGuideDb())
+            {
+                var restaurant = context.Restaurants
+                                        .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                                        .FirstOrDefault();
+
+                return restaurant;
             }
         }
     }
