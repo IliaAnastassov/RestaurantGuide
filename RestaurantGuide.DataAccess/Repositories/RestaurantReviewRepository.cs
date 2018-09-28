@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
 using RestaurantGuide.Entities;
@@ -9,21 +10,49 @@ namespace RestaurantGuide.DataAccess.Repositories
     {
         public RestaurantReview Get(int id)
         {
-            using (var context = new RestaurantGuideDb())
+            using (var db = new RestaurantGuideDb())
             {
-                var review = context.RestaurantReviews.Find(id);
+                var review = db.RestaurantReviews.Find(id);
+
                 return review;
             }
         }
 
         public IEnumerable<RestaurantReview> GetAll(string filter)
         {
-            using (var context = new RestaurantGuideDb())
+            using (var db = new RestaurantGuideDb())
             {
-                var reviews = context.RestaurantReviews
-                                     .ToList();
+                var reviews = db.RestaurantReviews.ToList();
 
                 return reviews;
+            }
+        }
+
+        public void Add(RestaurantReview entity)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                db.RestaurantReviews.Add(entity);
+                db.SaveChanges();
+            }
+        }
+
+        public void Edit(RestaurantReview entity)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                var review = db.RestaurantReviews.Find(id);
+                db.RestaurantReviews.Remove(review);
+                db.SaveChanges();
             }
         }
     }

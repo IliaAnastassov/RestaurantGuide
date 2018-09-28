@@ -10,23 +10,23 @@ namespace RestaurantGuide.DataAccess.Repositories
     {
         public Restaurant Get(int id)
         {
-            using (var context = new RestaurantGuideDb())
+            using (var db = new RestaurantGuideDb())
             {
-                var restaurant = context.Restaurants.Find(id);
+                var restaurant = db.Restaurants.Find(id);
                 return restaurant;
             }
         }
 
         public IEnumerable<Restaurant> GetAll(string filter)
         {
-            using (var context = new RestaurantGuideDb())
+            using (var db = new RestaurantGuideDb())
             {
-                var restaurants = context.Restaurants
-                                         .AsNoTracking()
-                                         .Include(r => r.Reviews)
-                                         .Where(r => string.IsNullOrEmpty(filter) || r.Name.ToLower().Contains(filter.ToLower()))
-                                         .OrderBy(r => r.Name)
-                                         .ToList();
+                var restaurants = db.Restaurants
+                                    .AsNoTracking()
+                                    .Include(r => r.Reviews)
+                                    .Where(r => string.IsNullOrEmpty(filter) || r.Name.ToLower().Contains(filter.ToLower()))
+                                    .OrderBy(r => r.Name)
+                                    .ToList();
 
                 return restaurants;
             }
@@ -34,15 +34,43 @@ namespace RestaurantGuide.DataAccess.Repositories
 
         public IEnumerable<Restaurant> GetTopRestaurants()
         {
-            using (var context = new RestaurantGuideDb())
+            using (var db = new RestaurantGuideDb())
             {
-                var restaurants = context.Restaurants
-                                         .AsNoTracking()
-                                         .Include(r => r.Reviews)
-                                         .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
-                                         .ToList();
+                var restaurants = db.Restaurants
+                                    .AsNoTracking()
+                                    .Include(r => r.Reviews)
+                                    .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                                    .ToList();
 
                 return restaurants;
+            }
+        }
+
+        public void Add(Restaurant entity)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                db.Restaurants.Add(entity);
+                db.SaveChanges();
+            }
+        }
+
+        public void Edit(Restaurant entity)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                db.Entry(entity).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                var restaurant = db.Restaurants.Find(id);
+                db.Restaurants.Remove(restaurant);
+                db.SaveChanges();
             }
         }
 

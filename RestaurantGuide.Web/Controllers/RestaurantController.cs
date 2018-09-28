@@ -35,6 +35,7 @@ namespace RestaurantGuide.Web.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(restaurant);
         }
 
@@ -53,8 +54,7 @@ namespace RestaurantGuide.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Restaurants.Add(restaurant);
-                //db.SaveChanges();
+                _repository.Add(restaurant);
                 return RedirectToAction("Index");
             }
 
@@ -86,8 +86,7 @@ namespace RestaurantGuide.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(restaurant).State = EntityState.Modified;
-                //db.SaveChanges();
+                _repository.Edit(restaurant);
                 return RedirectToAction("Index");
             }
             return View(restaurant);
@@ -114,9 +113,7 @@ namespace RestaurantGuide.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var restaurant = _repository.Get(id);
-            //db.Restaurants.Remove(restaurant);
-            //db.SaveChanges();
+            _repository.Delete(id);
             return RedirectToAction("Index");
         }
     }

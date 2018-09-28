@@ -7,5 +7,8 @@ namespace RestaurantGuide.DataAccess.Repositories.Interfaces
     {
         T Get(int id);
         IEnumerable<T> GetAll(string filter);
+        void Add(T entity);
+        void Edit(T entity);
+        void Delete(int id);
     }
 }
