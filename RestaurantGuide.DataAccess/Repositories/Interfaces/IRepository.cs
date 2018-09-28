@@ -6,6 +6,6 @@ namespace RestaurantGuide.DataAccess.Repositories.Interfaces
         where T : new()
     {
         T Get(int id);
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string filter);
     }
 }

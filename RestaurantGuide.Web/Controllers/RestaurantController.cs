@@ -15,9 +15,9 @@ namespace RestaurantGuide.Web.Controllers
         }
 
         // GET: Restaurant
-        public ActionResult Index()
+        public ActionResult Index(string filter)
         {
-            var restaurants = _repository.GetAll();
+            var restaurants = _repository.GetAll(filter);
 
             return View(restaurants);
         }

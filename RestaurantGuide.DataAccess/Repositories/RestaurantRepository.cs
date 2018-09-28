@@ -17,13 +17,14 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Restaurant> GetAll()
+        public IEnumerable<Restaurant> GetAll(string filter)
         {
             using (var context = new RestaurantGuideDb())
             {
                 var restaurants = context.Restaurants
                                          .AsNoTracking()
                                          .Include(r => r.Reviews)
+                                         .Where(r => string.IsNullOrEmpty(filter) || r.Name.ToLower().Contains(filter.ToLower()))
                                          .OrderBy(r => r.Name)
                                          .ToList();
 
@@ -31,7 +32,7 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Restaurant> GetRestaurantsOrderedByRating(string filter)
+        public IEnumerable<Restaurant> GetTopRestaurants()
         {
             using (var context = new RestaurantGuideDb())
             {
@@ -39,7 +40,6 @@ namespace RestaurantGuide.DataAccess.Repositories
                                          .AsNoTracking()
                                          .Include(r => r.Reviews)
                                          .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
-                                         .Where(r => string.IsNullOrEmpty(filter) || r.Name.ToLower().Contains(filter.ToLower()))
                                          .ToList();
 
                 return restaurants;

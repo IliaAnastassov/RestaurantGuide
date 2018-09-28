@@ -1,15 +1,10 @@
 ﻿@model IEnumerable<RestaurantGuide.Web.Models.RestaurantListViewModel>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Top Restaurants";
 }
 
-<h2>Restaurants</h2>
-
-<form method="get" class="form-group">
-    <input type="search" name="filter" class="input-sm" />
-    <input type="submit" value="Search" class="btn btn-sm" />
-</form>
+<h2 class="page-header">@ViewBag.Title</h2>
 
 @foreach (var restaurant in Model)
 {

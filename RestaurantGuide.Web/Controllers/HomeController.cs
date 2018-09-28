@@ -15,9 +15,9 @@ namespace RestaurantGuide.Web.Controllers
             _restaurantRepository = repository;
         }
 
-        public ActionResult Index(string filter)
+        public ActionResult Index()
         {
-            var restaurants = _restaurantRepository.GetRestaurantsOrderedByRating(filter)
+            var restaurants = _restaurantRepository.GetTopRestaurants()
                                                    .Select(r => new RestaurantListViewModel
                                                    {
                                                        Id = r.Id,

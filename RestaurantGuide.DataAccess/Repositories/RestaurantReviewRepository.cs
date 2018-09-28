@@ -16,7 +16,7 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<RestaurantReview> GetAll()
+        public IEnumerable<RestaurantReview> GetAll(string filter)
         {
             using (var context = new RestaurantGuideDb())
             {
