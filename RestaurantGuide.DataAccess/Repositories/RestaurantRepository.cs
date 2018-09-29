@@ -40,6 +40,7 @@ namespace RestaurantGuide.DataAccess.Repositories
                                     .AsNoTracking()
                                     .Include(r => r.Reviews)
                                     .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+                                    .Take(10)
                                     .ToList();
 
                 return restaurants;
