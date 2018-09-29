@@ -38,7 +38,7 @@ namespace RestaurantGuide.Web.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Add(restaurant);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             return View(restaurant);
@@ -69,8 +69,8 @@ namespace RestaurantGuide.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.Edit(restaurant);
-                return RedirectToAction("Index");
+                _repository.Update(restaurant);
+                return RedirectToAction(nameof(Index));
             }
             return View(restaurant);
         }
@@ -97,7 +97,7 @@ namespace RestaurantGuide.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             _repository.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

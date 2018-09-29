@@ -5,7 +5,7 @@
         <h4 class="panel-title">@Model.Name</h4>
     </div>
     <div class="panel-body">
-        <div>Rating: @Model.Rating</div>
+        <div>Rating: @($"{Model.Rating:F1}")</div>
         <div>@Html.ActionLink("Reviews", "Index", "Reviews", new { restaurantId = Model.Id }, null): @Model.CountOfReviews</div>
     </div>
 </section>

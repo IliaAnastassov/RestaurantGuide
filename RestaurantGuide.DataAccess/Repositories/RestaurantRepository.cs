@@ -59,7 +59,7 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public void Edit(Restaurant entity)
+        public void Update(Restaurant entity)
         {
             using (var db = new RestaurantGuideDb())
             {

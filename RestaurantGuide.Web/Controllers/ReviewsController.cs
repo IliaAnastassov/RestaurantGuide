@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using RestaurantGuide.Web.Models;
-using RestaurantGuide.Entities;
-using RestaurantGuide.DataAccess.Repositories;
-using System.Configuration;
+﻿using System.Web.Mvc;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
+using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.Web.Controllers
 {
@@ -33,6 +26,25 @@ namespace RestaurantGuide.Web.Controllers
             }
 
             return View(restaurant);
+        }
+
+        [HttpGet]
+        public ActionResult Add(int restaurantId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                _reviewRepository.Add(review);
+                return RedirectToAction(nameof(Index), new { restaurantId = review.RestaurantId });
+            }
+
+            return View(review);
         }
     }
 }

@@ -9,7 +9,7 @@
 @Html.Partial("_Review", Model.Reviews)
 
 <p>
-    @Html.ActionLink("Add review", "Create")
+    @Html.ActionLink("Add review", "Add", new { restaurantId = Model.Id })
 </p>
 
 @section footer {
