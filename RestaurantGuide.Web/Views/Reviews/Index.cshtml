@@ -1,20 +1,17 @@
-﻿@model IEnumerable<RestaurantGuide.Web.Models.RestaurantReview>
+﻿@model RestaurantGuide.Entities.Restaurant
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = $"Reviews for {Model.Name}";
 }
 
-<h2>The Latest Reviews</h2>
+<h2>@ViewBag.Title</h2>
 
-@foreach (var review in Model)
-{
-    @Html.Partial("_Review", review)
-}
+@Html.Partial("_Review", Model.Reviews)
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add review", "Create")
 </p>
 
 @section footer {
-    <span class="text-info">* We are showing the latest @Model.Count() reveiws.</span>
+    <span class="text-info">* We are showing the latest @Model.Reviews.Count() reveiws.</span>
 }

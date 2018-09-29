@@ -18,7 +18,19 @@ namespace RestaurantGuide.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<RestaurantReview> GetAll(string filter)
+        public IEnumerable<RestaurantReview> GetReviewsByRestaurant(int restaurantId)
+        {
+            using (var db = new RestaurantGuideDb())
+            {
+                var reviews = db.RestaurantReviews
+                                .Where(r => r.RestaurantId == restaurantId)
+                                .ToList();
+
+                return reviews;
+            }
+        }
+
+        public IEnumerable<RestaurantReview> GetAll(string filter = null)
         {
             using (var db = new RestaurantGuideDb())
             {

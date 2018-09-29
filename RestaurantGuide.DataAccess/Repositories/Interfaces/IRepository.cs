@@ -6,7 +6,7 @@ namespace RestaurantGuide.DataAccess.Repositories.Interfaces
         where T : new()
     {
         T Get(int id);
-        IEnumerable<T> GetAll(string filter);
+        IEnumerable<T> GetAll(string filter = null);
         void Add(T entity);
         void Edit(T entity);
         void Delete(int id);

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<RestaurantGuide.Entities.RestaurantReview>
+
+@foreach (var review in Model)
+{
+    <section class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Rating: @review.Rating</h4>
+        </div>
+        <div class="panel-body">
+            <div>@review.Body</div>
+            <div>@review.ReviewerName</div>
+        </div>
+    </section>
+}

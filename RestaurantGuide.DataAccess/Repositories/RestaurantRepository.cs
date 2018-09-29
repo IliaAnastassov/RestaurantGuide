@@ -12,12 +12,15 @@ namespace RestaurantGuide.DataAccess.Repositories
         {
             using (var db = new RestaurantGuideDb())
             {
-                var restaurant = db.Restaurants.Find(id);
+                var restaurant = db.Restaurants
+                                   .Include(r => r.Reviews)
+                                   .FirstOrDefault(r => r.Id == id);
+
                 return restaurant;
             }
         }
 
-        public IEnumerable<Restaurant> GetAll(string filter)
+        public IEnumerable<Restaurant> GetAll(string filter = null)
         {
             using (var db = new RestaurantGuideDb())
             {

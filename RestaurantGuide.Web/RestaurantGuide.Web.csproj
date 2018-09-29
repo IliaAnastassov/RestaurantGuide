@@ -279,7 +279,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
-    <Content Include="Views\Shared\_Review.cshtml" />
+    <Content Include="Views\Reviews\_Review.cshtml" />
     <Content Include="Views\Shared\_BestRestaurant.cshtml" />
     <Content Include="Views\Shared\_Restaurant.cshtml" />
     <Content Include="Views\Restaurant\Create.cshtml" />

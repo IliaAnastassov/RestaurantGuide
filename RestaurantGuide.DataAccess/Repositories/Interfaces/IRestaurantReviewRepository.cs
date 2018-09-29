@@ -9,5 +9,6 @@ namespace RestaurantGuide.DataAccess.Repositories.Interfaces
 {
     public interface IRestaurantReviewRepository : IRepository<RestaurantReview>
     {
+        IEnumerable<RestaurantReview> GetReviewsByRestaurant(int restaurantId);
     }
 }
