@@ -6,7 +6,6 @@
     </div>
     <div class="panel-body">
         <div>Rating: @Model.Rating</div>
-        <div>Reviews: @Model.CountOfReviews</div>
-        <div>@Html.ActionLink("Details", "Details", "Restaurant", new { id = Model.Id }, null)</div>
+        <div>@Html.ActionLink("Reviews", "Index", "Reviews", new { id = Model.Id }, null): @Model.CountOfReviews</div>
     </div>
 </section>

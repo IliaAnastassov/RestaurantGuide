@@ -22,23 +22,6 @@ namespace RestaurantGuide.Web.Controllers
             return View(restaurants);
         }
 
-        // GET: Restaurant/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Restaurant restaurant = _repository.Get((int)id);
-            if (restaurant == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(restaurant);
-        }
-
         // GET: Restaurant/Create
         public ActionResult Create()
         {
