@@ -57,7 +57,7 @@ namespace RestaurantGuide.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RestaurantReview review)
+        public ActionResult Edit([Bind(Exclude = "ReviewerName")]RestaurantReview review)
         {
             if (ModelState.IsValid)
             {
