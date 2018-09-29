@@ -46,5 +46,26 @@ namespace RestaurantGuide.Web.Controllers
 
             return View(review);
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var review = _reviewRepository.Get(id);
+
+            return View(review);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                _reviewRepository.Update(review);
+                return RedirectToAction(nameof(Index), new { restaurantId = review.RestaurantId });
+            }
+
+            return View(review);
+        }
     }
 }

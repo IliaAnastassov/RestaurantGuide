@@ -9,6 +9,9 @@
         <div class="panel-body">
             <div>@review.Body</div>
             <div>@review.ReviewerName</div>
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = review.Id })
+            </div>
         </div>
     </section>
 }
