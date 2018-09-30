@@ -59,6 +59,10 @@ namespace RestaurantGuide.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Exclude = "ReviewerName")]RestaurantReview review)
         {
+            var reviewerName = _reviewRepository.Get(review.Id)
+                                                .ReviewerName;
+            review.ReviewerName = reviewerName;
+
             if (ModelState.IsValid)
             {
                 _reviewRepository.Update(review);
