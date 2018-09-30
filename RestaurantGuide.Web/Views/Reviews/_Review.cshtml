@@ -4,11 +4,11 @@
 {
     <section class="panel panel-default">
         <div class="panel-heading">
-            <h4 class="panel-title">Rating: @review.Rating</h4>
+            <h4 class="panel-title">Rating: @Html.DisplayFor(reviews => review.Rating)</h4>
         </div>
         <div class="panel-body">
-            <div>@review.Body</div>
-            <div>@review.ReviewerName</div>
+            <div>@Html.DisplayFor(reviews => review.Body)</div>
+            <div>@Html.DisplayFor(reviews => review.ReviewerName)</div>
             <div>
                 @Html.ActionLink("Edit", "Edit", new { id = review.Id })
             </div>
