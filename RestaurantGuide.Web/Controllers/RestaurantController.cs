@@ -19,6 +19,11 @@ namespace RestaurantGuide.Web.Controllers
         {
             var restaurants = _repository.GetAll(filter);
 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Restaurants", restaurants);
+            }
+
             return View(restaurants);
         }
 
