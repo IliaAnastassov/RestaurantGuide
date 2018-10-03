@@ -1,8 +1,13 @@
 using System;
 using System.Configuration;
+using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using RestaurantGuide.DataAccess.Repositories;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
 using RestaurantGuide.Entities;
+using RestaurantGuide.Web.Controllers;
+using RestaurantGuide.Web.Models;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
@@ -48,6 +53,12 @@ namespace RestaurantGuide.Web
             // TODO: Register your type's mappings here.
             container.RegisterType<IRestaurantRepository, RestaurantRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IRestaurantReviewRepository, RestaurantReviewRepository>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
+            container.RegisterType<UserManager<ApplicationUser>>();
+            container.RegisterType<DbContext, ApplicationDbContext>();
+            container.RegisterType<ApplicationUserManager>();
+            container.RegisterType<AccountController>(new InjectionConstructor());
         }
     }
 }
