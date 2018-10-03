@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Web.Security;
 using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.DataAccess.Migrations
@@ -39,6 +40,18 @@ namespace RestaurantGuide.DataAccess.Migrations
                         new RestaurantReview { Rating = 8, Body = "Very nice place!", ReviewerName = "Jannet" }
                     }
                 });
+
+            SeedMembership();
+        }
+
+        private void SeedMembership()
+        {
+            var roles = Roles.Provider;
+
+            if (!roles.RoleExists("Admin"))
+            {
+                roles.CreateRole("Admin");
+            }
         }
     }
 }
