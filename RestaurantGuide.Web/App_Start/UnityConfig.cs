@@ -1,11 +1,11 @@
 using System;
-using System.Configuration;
 using System.Data.Entity;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using RestaurantGuide.DataAccess.Repositories;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
-using RestaurantGuide.Entities;
 using RestaurantGuide.Web.Controllers;
 using RestaurantGuide.Web.Models;
 using Unity;
@@ -54,10 +54,10 @@ namespace RestaurantGuide.Web
             container.RegisterType<IRestaurantRepository, RestaurantRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IRestaurantReviewRepository, RestaurantReviewRepository>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
-            container.RegisterType<UserManager<ApplicationUser>>();
-            container.RegisterType<DbContext, ApplicationDbContext>();
-            container.RegisterType<ApplicationUserManager>();
+            container.RegisterType<IAuthenticationManager>(new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
+            container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
             container.RegisterType<AccountController>(new InjectionConstructor());
         }
     }
