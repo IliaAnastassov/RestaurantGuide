@@ -5,6 +5,7 @@ using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.Web.Controllers
 {
+    [Authorize]
     public class RestaurantController : Controller
     {
         private IRestaurantRepository _repository;

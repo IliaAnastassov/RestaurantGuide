@@ -6,6 +6,7 @@ using RestaurantGuide.Web.Models;
 
 namespace RestaurantGuide.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IRestaurantRepository _restaurantRepository;
@@ -15,6 +16,7 @@ namespace RestaurantGuide.Web.Controllers
             _restaurantRepository = repository;
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var restaurants = _restaurantRepository.GetTopRestaurants()
@@ -44,6 +46,7 @@ namespace RestaurantGuide.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult BestRestaurant()
         {
