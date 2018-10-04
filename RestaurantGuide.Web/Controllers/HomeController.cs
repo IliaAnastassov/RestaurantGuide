@@ -17,7 +17,6 @@ namespace RestaurantGuide.Web.Controllers
             _restaurantRepository = repository;
         }
 
-        [OutputCache(CacheProfile = "Hour")]
         [AllowAnonymous]
         public ActionResult Index()
         {
