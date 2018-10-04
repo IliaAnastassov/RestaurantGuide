@@ -16,6 +16,7 @@ namespace RestaurantGuide.Web.Controllers
             _restaurantRepository = repository;
         }
 
+        [OutputCache(Duration = 600)]
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -46,6 +47,7 @@ namespace RestaurantGuide.Web.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 21600)]
         [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult BestRestaurant()
