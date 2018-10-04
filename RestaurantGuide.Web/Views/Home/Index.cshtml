@@ -6,6 +6,10 @@
 
 <h2 class="page-header">@ViewBag.Title</h2>
 
+<div class="jumbotron">
+    <h3>@Resources.WelcomeMessage</h3>
+</div>
+
 @foreach (var restaurant in Model)
 {
     @Html.Partial("_Restaurant", restaurant)
