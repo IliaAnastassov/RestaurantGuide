@@ -9,6 +9,7 @@ namespace RestaurantGuide.Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private const int DAY_DURATION = 21600;
         private IRestaurantRepository _restaurantRepository;
 
         public HomeController(IRestaurantRepository repository)
@@ -16,7 +17,7 @@ namespace RestaurantGuide.Web.Controllers
             _restaurantRepository = repository;
         }
 
-        [OutputCache(Duration = 600)]
+        [OutputCache(CacheProfile = "Hour")]
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -47,7 +48,7 @@ namespace RestaurantGuide.Web.Controllers
             return View();
         }
 
-        [OutputCache(Duration = 21600)]
+        [OutputCache(Duration = DAY_DURATION)]
         [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult BestRestaurant()
