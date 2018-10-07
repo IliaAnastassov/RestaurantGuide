@@ -13,11 +13,14 @@ namespace RestaurantGuide.Web.Tests.Features
             _restaurant = restaurant;
         }
 
-        public RatingResult ComputeRating(int numberOfReviews)
+        public RatingResult ComputeRating(IRatingAlgorithm ratingAlgorithm, int numberOfReviews)
         {
-            var result = new RatingResult();
-            result.Rating = (int)_restaurant.Reviews.Average(r => r.Rating);
-            return result;
+            var reviews = _restaurant
+                          .Reviews
+                          .Take(numberOfReviews)
+                          .ToList();
+
+            return ratingAlgorithm.Compute(reviews);
         }
     }
 }
