@@ -9,7 +9,7 @@ namespace RestaurantGuide.Web.Tests.Features
         public RatingResult Compute(IList<RestaurantReview> reviews)
         {
             var result = new RatingResult();
-            result.Rating = (int)reviews.Average(r => r.Rating);
+            result.Rating = reviews.Average(r => r.Rating);
             return result;
         }
     }

@@ -2,6 +2,6 @@
 {
     public class RatingResult
     {
-        public int Rating { get; set; }
+        public double Rating { get; set; }
     }
 }

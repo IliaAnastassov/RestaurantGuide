@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using RestaurantGuide.Entities;
 
 namespace RestaurantGuide.Web.Tests.Features
