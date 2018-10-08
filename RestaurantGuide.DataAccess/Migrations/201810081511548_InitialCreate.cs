@@ -3,7 +3,7 @@ namespace RestaurantGuide.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial_Migration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -13,7 +13,8 @@ namespace RestaurantGuide.DataAccess.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Rating = c.Int(nullable: false),
-                        Body = c.String(),
+                        Body = c.String(nullable: false, maxLength: 1024),
+                        ReviewerName = c.String(maxLength: 100),
                         RestaurantId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -25,9 +26,9 @@ namespace RestaurantGuide.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        City = c.String(),
-                        Country = c.String(),
+                        Name = c.String(nullable: false, maxLength: 100),
+                        City = c.String(nullable: false, maxLength: 100),
+                        Country = c.String(nullable: false, maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id);
             
