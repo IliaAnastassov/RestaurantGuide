@@ -37,7 +37,7 @@ namespace RestaurantGuide.Web.Tests.Mocks
 
         public IEnumerable<Restaurant> GetAll(string filter = null)
         {
-            throw new NotImplementedException();
+            return _restaurants;
         }
 
         public Restaurant GetBestRestaurant()

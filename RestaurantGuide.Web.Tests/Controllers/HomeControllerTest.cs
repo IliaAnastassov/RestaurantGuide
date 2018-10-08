@@ -16,10 +16,10 @@ namespace RestaurantGuide.Web.Tests.Controllers
         {
             // Arrange
             var mockRepository = new MockRestaurantRepository(TestData.Restaurants);
-            HomeController controller = new HomeController(mockRepository);
+            var controller = new HomeController(mockRepository);
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
             var model = result.Model as IEnumerable<RestaurantListViewModel>;
 
             // Assert
