@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RestaurantGuide.Business.Interfaces;
 using RestaurantGuide.Entities;
 
@@ -9,24 +10,33 @@ namespace RestaurantGuide.Business
         public RatingResult Compute(IList<RestaurantReview> reviews)
         {
             var result = new RatingResult();
-            var counter = 0;
-            var total = 0;
 
-            for (int i = 0; i < reviews.Count; i++)
+            if (reviews.Any())
             {
-                if (i < reviews.Count / 2)
+                var counter = 0;
+                var total = 0;
+
+                for (int i = 0; i < reviews.Count; i++)
                 {
-                    total += reviews[i].Rating * 2;
-                    counter += 2;
+                    if (i < reviews.Count / 2)
+                    {
+                        total += reviews[i].Rating * 2;
+                        counter += 2;
+                    }
+                    else
+                    {
+                        total += reviews[i].Rating;
+                        counter++;
+                    }
                 }
-                else
-                {
-                    total += reviews[i].Rating;
-                    counter++;
-                }
+
+                result.Rating = total / counter;
+            }
+            else
+            {
+                result.Rating = null;
             }
 
-            result.Rating = total / counter;
             return result;
         }
     }

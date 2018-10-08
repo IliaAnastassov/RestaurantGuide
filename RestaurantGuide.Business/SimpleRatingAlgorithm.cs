@@ -10,7 +10,16 @@ namespace RestaurantGuide.Business
         public RatingResult Compute(IList<RestaurantReview> reviews)
         {
             var result = new RatingResult();
-            result.Rating = reviews.Average(r => r.Rating);
+
+            if (reviews.Any())
+            {
+                result.Rating = reviews.Average(r => r.Rating);
+            }
+            else
+            {
+                result.Rating = null;
+            }
+
             return result;
         }
     }

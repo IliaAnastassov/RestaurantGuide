@@ -42,6 +42,17 @@ namespace RestaurantGuide.Business.Tests
         }
 
         [TestMethod]
+        public void Computes_Simple_Result_For_Zero_Reviews()
+        {
+            var restaurant = BuildRestaurantAndReviews();
+
+            var rater = new RestaurantRater(restaurant);
+            var result = rater.ComputeRating(new SimpleRatingAlgorithm(), 3);
+
+            Assert.IsNull(result.Rating);
+        }
+
+        [TestMethod]
         public void Computes_Weighted_Result_For_Two_Reviews()
         {
             var restaurant = BuildRestaurantAndReviews(5, 8);
@@ -50,6 +61,17 @@ namespace RestaurantGuide.Business.Tests
             var result = rater.ComputeRating(new WeightedRatingAlgorithm(), 10);
 
             Assert.AreEqual(6, result.Rating);
+        }
+
+        [TestMethod]
+        public void Computes_Weighted_Result_For_Zero_Reviews()
+        {
+            var restaurant = BuildRestaurantAndReviews();
+
+            var rater = new RestaurantRater(restaurant);
+            var result = rater.ComputeRating(new WeightedRatingAlgorithm(), 10);
+
+            Assert.IsNull(result.Rating);
         }
 
         private Restaurant BuildRestaurantAndReviews(params int[] ratings)
