@@ -25,31 +25,5 @@ namespace RestaurantGuide.Web.Tests.Controllers
             // Assert
             Assert.AreEqual(10, model.Count());
         }
-
-        [TestMethod]
-        public void About()
-        {
-            //// Arrange
-            //HomeController controller = new HomeController();
-
-            //// Act
-            //ViewResult result = controller.About() as ViewResult;
-
-            //// Assert
-            //Assert.IsNotNull(result.Model);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            //// Arrange
-            //HomeController controller = new HomeController();
-
-            //// Act
-            //ViewResult result = controller.Contact() as ViewResult;
-
-            //// Assert
-            //Assert.IsNotNull(result);
-        }
     }
 }
