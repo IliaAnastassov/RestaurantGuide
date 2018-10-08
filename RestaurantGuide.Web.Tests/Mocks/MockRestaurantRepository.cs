@@ -8,16 +8,16 @@ namespace RestaurantGuide.Web.Tests.Mocks
 {
     class MockRestaurantRepository : IRestaurantRepository
     {
-        private IEnumerable<Restaurant> _restaurants;
+        private ICollection<Restaurant> _restaurants;
 
-        public MockRestaurantRepository(IEnumerable<Restaurant> restaurants)
+        public MockRestaurantRepository(ICollection<Restaurant> restaurants)
         {
             _restaurants = restaurants;
         }
 
         public void Add(Restaurant entity)
         {
-            throw new NotImplementedException();
+            _restaurants.Add(entity);
         }
 
         public void Delete(int id)

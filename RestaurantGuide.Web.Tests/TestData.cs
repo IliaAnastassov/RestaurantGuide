@@ -5,7 +5,7 @@ namespace RestaurantGuide.Web.Tests
 {
     class TestData
     {
-        public static IEnumerable<Restaurant> Restaurants
+        public static ICollection<Restaurant> Restaurants
         {
             get
             {
