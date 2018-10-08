@@ -3,7 +3,7 @@
 namespace RestaurantGuide.DataAccess.Repositories.Interfaces
 {
     public interface IRepository<T>
-        where T : new()
+        where T : class, new()
     {
         T Get(int id);
         IEnumerable<T> GetAll(string filter = null);
