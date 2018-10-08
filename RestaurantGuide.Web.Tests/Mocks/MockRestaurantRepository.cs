@@ -10,6 +10,11 @@ namespace RestaurantGuide.Web.Tests.Mocks
     {
         private ICollection<Restaurant> _restaurants;
 
+        public MockRestaurantRepository()
+        {
+            _restaurants = new List<Restaurant>();
+        }
+
         public MockRestaurantRepository(ICollection<Restaurant> restaurants)
         {
             _restaurants = restaurants;
