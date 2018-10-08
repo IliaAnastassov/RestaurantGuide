@@ -1,9 +1,10 @@
 ﻿using System.Linq;
+using RestaurantGuide.Business.Interfaces;
 using RestaurantGuide.Entities;
 
-namespace RestaurantGuide.Web.Tests.Features
+namespace RestaurantGuide.Business
 {
-    internal class RestaurantRater
+    public class RestaurantRater
     {
         private Restaurant _restaurant;
 

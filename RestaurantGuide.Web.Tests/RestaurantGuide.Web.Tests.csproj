@@ -84,12 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\RestaurantControllerTests.cs" />
-    <Compile Include="Features\IRatingAlgorithm.cs" />
-    <Compile Include="Features\RatingResult.cs" />
-    <Compile Include="Features\RestaurantRater.cs" />
-    <Compile Include="Features\RestaurantRaterTests.cs" />
-    <Compile Include="Features\SimpleRatingAlgorithm.cs" />
-    <Compile Include="Features\WeightedRatingAlgorithm.cs" />
     <Compile Include="Mocks\MockRestaurantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

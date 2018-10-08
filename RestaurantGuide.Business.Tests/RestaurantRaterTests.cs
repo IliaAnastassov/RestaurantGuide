@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantGuide.Entities;
+using RestaurantGuide.Business;
 
-namespace RestaurantGuide.Web.Tests.Features
+namespace RestaurantGuide.Business.Tests
 {
     [TestClass]
     public class RestaurantRaterTests

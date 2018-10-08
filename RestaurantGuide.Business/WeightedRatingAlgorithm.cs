@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using RestaurantGuide.Business.Interfaces;
 using RestaurantGuide.Entities;
 
-namespace RestaurantGuide.Web.Tests.Features
+namespace RestaurantGuide.Business
 {
-    class WeightedRatingAlgorithm : IRatingAlgorithm
+    public class WeightedRatingAlgorithm : IRatingAlgorithm
     {
         public RatingResult Compute(IList<RestaurantReview> reviews)
         {

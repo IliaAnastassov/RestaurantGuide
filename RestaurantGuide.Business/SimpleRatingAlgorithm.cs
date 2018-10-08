@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RestaurantGuide.Business.Interfaces;
 using RestaurantGuide.Entities;
 
-namespace RestaurantGuide.Web.Tests.Features
+namespace RestaurantGuide.Business
 {
-    class SimpleRatingAlgorithm : IRatingAlgorithm
+    public class SimpleRatingAlgorithm : IRatingAlgorithm
     {
         public RatingResult Compute(IList<RestaurantReview> reviews)
         {

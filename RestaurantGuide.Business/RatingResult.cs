@@ -1,4 +1,4 @@
-﻿namespace RestaurantGuide.Web.Tests.Features
+﻿namespace RestaurantGuide.Business
 {
     public class RatingResult
     {

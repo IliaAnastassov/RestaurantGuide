@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using RestaurantGuide.Entities;
 
-namespace RestaurantGuide.Web.Tests.Features
+namespace RestaurantGuide.Business.Interfaces
 {
     public interface IRatingAlgorithm
     {
