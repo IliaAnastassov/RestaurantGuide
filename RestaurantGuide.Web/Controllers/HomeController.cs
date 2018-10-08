@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using RestaurantGuide.Business;
 using RestaurantGuide.DataAccess.Repositories.Interfaces;
 using RestaurantGuide.Entities;
 using RestaurantGuide.Web.Models;
@@ -21,14 +22,16 @@ namespace RestaurantGuide.Web.Controllers
         public ActionResult Index()
         {
             var restaurants = _restaurantRepository.GetTopRestaurants()
-                                                   .Select(r => new RestaurantListViewModel
+                                                   .Select(restaurant => new RestaurantListViewModel
                                                    {
-                                                       Id = r.Id,
-                                                       Name = r.Name,
-                                                       City = r.City,
-                                                       Country = r.Country,
-                                                       CountOfReviews = r.Reviews.Count(),
-                                                       Rating = GetRating(r)
+                                                       Id = restaurant.Id,
+                                                       Name = restaurant.Name,
+                                                       City = restaurant.City,
+                                                       Country = restaurant.Country,
+                                                       CountOfReviews = restaurant.Reviews.Count(),
+                                                       Rating = new RestaurantRater(restaurant)
+                                                                    .ComputeRating(new WeightedRatingAlgorithm(), 10)
+                                                                    .Rating
                                                    })
                                                    .ToList();
 
@@ -55,18 +58,6 @@ namespace RestaurantGuide.Web.Controllers
             var bestRestaurant = _restaurantRepository.GetBestRestaurant();
 
             return PartialView("_BestRestaurant", bestRestaurant);
-        }
-
-        private double? GetRating(Restaurant restaurant)
-        {
-            double? rating = null;
-
-            if (restaurant.Reviews.Any())
-            {
-                rating = restaurant.Reviews.Average(r => r.Rating);
-            }
-
-            return rating;
         }
     }
 }

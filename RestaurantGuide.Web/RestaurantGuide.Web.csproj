@@ -319,6 +319,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RestaurantGuide.Business\RestaurantGuide.Business.csproj">
+      <Project>{76704f6a-63e3-4a06-99be-05d823bbf2ee}</Project>
+      <Name>RestaurantGuide.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RestaurantGuide.DataAccess\RestaurantGuide.DataAccess.csproj">
       <Project>{adf44d24-e950-4790-aafd-00bf9d4aba1a}</Project>
       <Name>RestaurantGuide.DataAccess</Name>
