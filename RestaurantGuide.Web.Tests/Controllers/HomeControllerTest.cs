@@ -1,6 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantGuide.Web.Controllers;
+using RestaurantGuide.Web.Models;
+using RestaurantGuide.Web.Tests.Mocks;
 
 namespace RestaurantGuide.Web.Tests.Controllers
 {
@@ -10,14 +14,16 @@ namespace RestaurantGuide.Web.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            //// Arrange
-            //HomeController controller = new HomeController();
+            // Arrange
+            var mockRepository = new MockRestaurantRepository(TestData.Restaurants);
+            HomeController controller = new HomeController(mockRepository);
 
-            //// Act
-            //ViewResult result = controller.Index() as ViewResult;
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
+            var model = result.Model as IEnumerable<RestaurantListViewModel>;
 
-            //// Assert
-            //Assert.IsNotNull(result);
+            // Assert
+            Assert.AreEqual(10, model.Count());
         }
 
         [TestMethod]

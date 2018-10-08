@@ -89,8 +89,10 @@
     <Compile Include="Features\RestaurantRaterTests.cs" />
     <Compile Include="Features\SimpleRatingAlgorithm.cs" />
     <Compile Include="Features\WeightedRatingAlgorithm.cs" />
+    <Compile Include="Mocks\MockRestaurantRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -99,6 +101,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RestaurantGuide.DataAccess\RestaurantGuide.DataAccess.csproj">
+      <Project>{ADF44D24-E950-4790-AAFD-00BF9D4ABA1A}</Project>
+      <Name>RestaurantGuide.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RestaurantGuide.Entities\RestaurantGuide.Entities.csproj">
       <Project>{25860CE2-4EED-4893-8FB4-F0C566435234}</Project>
       <Name>RestaurantGuide.Entities</Name>
